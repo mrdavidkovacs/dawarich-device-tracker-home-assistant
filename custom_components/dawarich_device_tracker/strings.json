@@ -1,0 +1,74 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Dawarich instance",
+        "description": "Add the Dawarich instance that provides the location history API.",
+        "data": {
+          "url": "Dawarich URL",
+          "verify_ssl": "Verify SSL certificate",
+          "scan_interval": "Polling interval in seconds",
+          "timeout": "Request timeout in seconds",
+          "stale_after": "Mark tracker unavailable after seconds without a fresh point"
+        }
+      },
+      "tracker": {
+        "title": "First device tracker",
+        "description": "Add one Dawarich API key. More trackers can be added later from Configure.",
+        "data": {
+          "name": "Tracker name",
+          "tracker_id": "Tracker ID (optional, used in entity ID)",
+          "api_key": "Dawarich API key"
+        }
+      }
+    },
+    "error": {
+      "required": "This field is required."
+    },
+    "abort": {
+      "already_configured": "This Dawarich instance is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "menu_options": {
+          "settings": "Instance settings",
+          "add_tracker": "Add device tracker",
+          "remove_tracker": "Remove device tracker"
+        }
+      },
+      "settings": {
+        "title": "Dawarich instance settings",
+        "data": {
+          "url": "Dawarich URL",
+          "verify_ssl": "Verify SSL certificate",
+          "scan_interval": "Polling interval in seconds",
+          "timeout": "Request timeout in seconds",
+          "stale_after": "Mark tracker unavailable after seconds without a fresh point"
+        }
+      },
+      "add_tracker": {
+        "title": "Add device tracker",
+        "data": {
+          "name": "Tracker name",
+          "tracker_id": "Tracker ID (optional, used in entity ID)",
+          "api_key": "Dawarich API key"
+        }
+      },
+      "remove_tracker": {
+        "title": "Remove device tracker",
+        "data": {
+          "tracker_id": "Tracker"
+        }
+      }
+    },
+    "error": {
+      "already_exists": "A tracker with this ID already exists.",
+      "required": "This field is required."
+    },
+    "abort": {
+      "no_trackers": "There are no trackers to remove."
+    }
+  }
+}
