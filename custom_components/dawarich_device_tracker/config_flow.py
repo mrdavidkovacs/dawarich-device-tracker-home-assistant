@@ -55,16 +55,34 @@ def _base_schema(defaults: dict[str, Any] | None = None) -> vol.Schema:
                 CONF_SCAN_INTERVAL,
                 default=defaults.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL),
             ): NumberSelector(
-                NumberSelectorConfig(min=30, max=3600, step=10, mode=NumberSelectorMode.BOX)
+                NumberSelectorConfig(
+                    min=30,
+                    max=3600,
+                    step=10,
+                    mode=NumberSelectorMode.BOX,
+                    unit_of_measurement="s",
+                )
             ),
             vol.Required(CONF_TIMEOUT, default=defaults.get(CONF_TIMEOUT, DEFAULT_TIMEOUT)): NumberSelector(
-                NumberSelectorConfig(min=5, max=120, step=1, mode=NumberSelectorMode.BOX)
+                NumberSelectorConfig(
+                    min=5,
+                    max=120,
+                    step=1,
+                    mode=NumberSelectorMode.BOX,
+                    unit_of_measurement="s",
+                )
             ),
             vol.Required(
                 CONF_STALE_AFTER,
                 default=defaults.get(CONF_STALE_AFTER, DEFAULT_STALE_AFTER),
             ): NumberSelector(
-                NumberSelectorConfig(min=60, max=86400, step=60, mode=NumberSelectorMode.BOX)
+                NumberSelectorConfig(
+                    min=60,
+                    max=86400,
+                    step=60,
+                    mode=NumberSelectorMode.BOX,
+                    unit_of_measurement="s",
+                )
             ),
         }
     )

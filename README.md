@@ -203,7 +203,20 @@ Basic local checks:
 python -m compileall -q -b custom_components/dawarich_device_tracker
 python -m json.tool custom_components/dawarich_device_tracker/manifest.json
 python -m json.tool custom_components/dawarich_device_tracker/strings.json
+python -m json.tool custom_components/dawarich_device_tracker/translations/en.json
+python -m json.tool release-please-config.json
+python -m json.tool .release-please-manifest.json
 ```
+
+## Versioning and releases
+
+Releases are automated with [Release Please](https://github.com/googleapis/release-please-action) from Conventional Commit messages.
+
+- `fix: ...` creates a patch release.
+- `feat: ...` creates a minor release.
+- A breaking-change footer creates a major release.
+
+When changes land on `main`, Release Please opens or updates a release PR. Merging that PR updates the integration version in `custom_components/dawarich_device_tracker/manifest.json`, updates the release manifest, creates a GitHub release, and tags the repository. HACS can then use the GitHub release/tag normally.
 
 ## License
 

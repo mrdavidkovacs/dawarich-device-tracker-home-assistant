@@ -1,0 +1,15 @@
+{
+  "packages": {
+    ".": {
+      "package-name": "dawarich-device-tracker-home-assistant",
+      "release-type": "simple",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "custom_components/dawarich_device_tracker/manifest.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    }
+  }
+}
