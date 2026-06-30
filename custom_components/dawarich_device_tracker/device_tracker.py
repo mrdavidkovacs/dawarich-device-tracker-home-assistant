@@ -5,7 +5,7 @@ from __future__ import annotations
 from homeassistant.components.device_tracker.config_entry import TrackerEntity
 from homeassistant.components.device_tracker.const import SourceType
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_NAME
+from homeassistant.const import CONF_NAME, STATE_UNAVAILABLE
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
@@ -46,8 +46,19 @@ class DawarichDeviceTracker(CoordinatorEntity[DawarichTrackerCoordinator], Track
 
     @property
     def available(self) -> bool:
-        """Return availability."""
-        return super().available and self.coordinator.data is not None and not self.coordinator.is_stale
+        """Keep the entity writable so unavailable diagnostics remain visible."""
+        return True
+
+    @property
+    def state(self) -> str | None:  # type: ignore[override]
+        """Return the tracker state."""
+        if (
+            not self.coordinator.last_update_success
+            or self.coordinator.data is None
+            or self.coordinator.is_stale
+        ):
+            return STATE_UNAVAILABLE
+        return super().state
 
     @property
     def latitude(self) -> float | None:
