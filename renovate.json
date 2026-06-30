@@ -2,5 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "branchPrefix": "renovate/",
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "commitMessageTopic": "GitHub Actions dependency {{depName}}"
+    },
+    {
+      "matchDatasources": ["python-version"],
+      "commitMessageTopic": "Python {{depName}}"
+    }
   ]
 }
