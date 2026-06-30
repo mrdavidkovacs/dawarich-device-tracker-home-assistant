@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/mrdavidkovacs/dawarich-device-tracker-home-assistant/compare/dawarich-device-tracker-home-assistant-v0.2.1...dawarich-device-tracker-home-assistant-v0.2.2) (2026-06-30)
+
+
+### Bug Fixes
+
+* show diagnostics for unavailable trackers ([d1d333e](https://github.com/mrdavidkovacs/dawarich-device-tracker-home-assistant/commit/d1d333ebd05eeb325ad9a718da3031a05bd8f4ed))
+
 ## [0.2.1](https://github.com/mrdavidkovacs/dawarich-device-tracker-home-assistant/compare/dawarich-device-tracker-home-assistant-v0.2.0...dawarich-device-tracker-home-assistant-v0.2.1) (2026-06-30)
 
 
