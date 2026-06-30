@@ -25,8 +25,7 @@ async def async_setup_entry(
     trackers = runtime["trackers"]
 
     async_add_entities(
-        DawarichDeviceTracker(entry, coordinators[tracker[CONF_TRACKER_ID]], tracker)
-        for tracker in trackers
+        [DawarichDeviceTracker(entry, coordinators[tracker[CONF_TRACKER_ID]], tracker) for tracker in trackers]
     )
 
 
@@ -64,12 +63,22 @@ class DawarichDeviceTracker(CoordinatorEntity[DawarichTrackerCoordinator], Track
     def extra_state_attributes(self) -> dict:
         """Return diagnostic attributes."""
         data = self.coordinator.data
-        if data is None:
-            return {"tracker_id": self.coordinator.tracker_id}
-        return {
+        attributes = {
             "tracker_id": self.coordinator.tracker_id,
-            "last_dawarich_timestamp": data.timestamp.isoformat() if data.timestamp else None,
+            "last_update_success": self.coordinator.last_update_success,
+            "last_point_age_seconds": self.coordinator.last_point_age_seconds,
+            "stale_after_seconds": self.coordinator.stale_after,
             "stale": self.coordinator.is_stale,
-            "dawarich_point_id": data.raw.get("id"),
-            "dawarich_tracker_id": data.raw.get("tracker_id"),
         }
+        if self.coordinator.last_exception is not None:
+            attributes["last_update_error"] = str(self.coordinator.last_exception)
+        if data is None:
+            return attributes
+        attributes.update(
+            {
+                "last_dawarich_timestamp": data.timestamp.isoformat() if data.timestamp else None,
+                "dawarich_point_id": data.raw.get("id"),
+                "dawarich_tracker_id": data.raw.get("tracker_id"),
+            }
+        )
+        return attributes
